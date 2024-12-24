@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import bgImage from "../assets/Imagebg.jpg";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
@@ -19,13 +20,13 @@ const LoginPage = () => {
       });
       const data = await result.json();
       if (data.status === 200) {
-        alert(data.msg);
+        toast.success(data.msg);
         window.location.href = "/dashboard";
       } else {
-        alert(data.msg);
+        toast.error(data.msg);
       }
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   }
 

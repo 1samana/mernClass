@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import bgImage from "../assets/Imagebg.jpg";
-
+import { toast } from "react-toastify";
 function FormUI() {
   const [password, setPassword] = useState({});
   const [email, setEmail] = useState({});
@@ -23,10 +23,10 @@ function FormUI() {
       });
       const data = await result.json();
       if(data.status === 200){
-        alert(data.msg)
+        toast.success(data.msg);
       }
       else{
-        alert("Registration Failed")
+        toast.error(data.msg)
       }
     } catch (error) {
       console.log(error.message);
@@ -67,6 +67,13 @@ function FormUI() {
           >
             Register
           </button>
+          <p className="text-white text-center text-sm">
+            
+            Have account?{" "}
+            <a className="text-blue-500 underline" href="/">
+              Login
+            </a>
+          </p>
         </form>
       </div>
     </>

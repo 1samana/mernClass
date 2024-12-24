@@ -4,6 +4,7 @@ import bgImage from "../assets/hero.jpeg";
 const DahboardPage = () => {
   return (
     <>
+    
     <div>
     <div  className="w-full  bg-cover bg-center   max-h-96 bg-no-repeat" 
             style={{ backgroundImage: `url(${bgImage})` }}>
