@@ -20,6 +20,7 @@
 // const express = require("express");
 import express from "express";
 import bcrypt from "bcryptjs"; // this is for ES6 i
+import multer from "multer";
 const app = express();
 
 //importing database connection in index.js
@@ -27,11 +28,14 @@ const app = express();
 import connectDB from "./dbconfig/conn.js";
 import uM from "./models/product-model.js";
 import AdminModel from "./models/admin-model.js";
+import bookModel from "./models/book.js";
 import cors from "cors";
 //connection function call
 connectDB();
 //middleware
 app.use(express.json());
+//for form data and image
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //first api
@@ -58,7 +62,9 @@ app.post("/register", async (req, res) => {
     const register = new uM({ name, email, password: hashpassword });
     await register.save();
     if (register) {
-      res.status(200).json({status: 200, msg: "user registered", data: register });
+      res
+        .status(200)
+        .json({ status: 200, msg: "user registered", data: register });
     } else {
       res.status(400).json({ msg: "user not registered" });
     }
@@ -207,6 +213,94 @@ app.get("/admin/list/:name", async (req, res) => {
     return res
       .status(500)
       .json({ msg: "Internal server error", err: error.message });
+  }
+});
+
+app.post("/book", async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      author,
+      publisher,
+      publicationDate,
+      genre,
+      lannguage,
+    } = req.body;
+
+    const newBook = new bookModel({
+      title,
+      description,
+      author,
+      publisher,
+      publicationDate,
+      genre,
+      lannguage,
+    });
+
+    await newBook.save();
+    return res
+      .status(200)
+      .json({ msg: "Book added successfully", data: newBook });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ msg: "Internal server error", data: error.message });
+  }
+});
+
+app.get("/booklist", async (req, res) => {
+  try {
+    const books = await bookModel.find();
+    if (books) {
+      return res
+        .status(200)
+        .json({ msg: "Books fetched successfully", data: books });
+    } else {
+      return res.status(400).json({ msg: "No books found" });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(500)
+      .json({ msg: "Internal server error", error: error.message });
+  }
+});
+
+app.delete("/bookdelete/:_id", async (req, res) => {
+  try {
+    const books = await bookModel.findByIdAndDelete(req.params._id);
+    if (books) {
+      return res.status(200).json({ msg: "Books deleted successfully" });
+    } else {
+      return res.status(400).json({ msg: "No books found" });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(500)
+      .json({ msg: "Internal server error", error: error.message });
+  }
+});
+
+app.patch("/bookupdate/:_id", async (req, res) => {
+  try {
+    const books = await bookModel.findByIdAndUpdate(req.params._id, req.body, {
+      new: true,
+    });
+    if (books) {
+      return res
+        .status(200)
+        .json({ msg: "Books updated successfully", data: books });
+    } else {
+      return res.status(400).json({ msg: "No books found" });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(500)
+      .json({ msg: "Internal server error", error: error.message });
   }
 });
 

@@ -1,11 +1,13 @@
 import React from "react";
-import FormUI from "./component/FormUI";
-import LoginPage from "./component/LoginPage";
-import DashboardPage from "./component/DahboardPage";
+import FormUI from "./pages/FormUI";
+import LoginPage from "./pages/LoginPage";
+import Index from "./pages/Indexx"
+import AddBook from "./pages/AddBook"
+import HomePage from "./pages/HomePage";
 import { ToastContainer } from "react-toastify";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./component/Navbar";
-import HomePage from "./component/HomePage";
+
 
 function App() {
   return (
@@ -13,10 +15,11 @@ function App() {
     <ToastContainer/>
     
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<FormUI />} />
-        <Route path="/home" element={<HomePage />} />
-        
+      <Route path="/" element={<Index />} /> 
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<FormUI />} /> 
+        <Route path="/homee" element = {<HomePage/>}/>
+        <Route path="/addBook" element = {<AddBook/>}/>
       </Routes>
     
     </>

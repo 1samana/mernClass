@@ -1,28 +1,27 @@
-import React from 'react';
-import bgImage from "../assets/hero.jpeg";
+import React from "react";
+import bgImage from "../assets/homebg.png";
 
-const DahboardPage = () => {
+const DashboardPage = () => {
   return (
     <>
-    
-    <div>
-    <div  className="w-full  bg-cover bg-center   max-h-96 bg-no-repeat" 
-            style={{ backgroundImage: `url(${bgImage})` }}>
-        <div className=' w-full flex flex-col justify-center items-start h-96 bg-gradient-to-r from-blue-950/80 to-transparent'>
-        <p className='ml-32 text-white text-start'>The worst University of the world</p>
-        <h1 className='ml-32 text-white text-5xl font-bold'>Tribhuvan University</h1>
+      
+      <div className="w-full h-96 flex flex-col items-start justify-center bg-cover bg-center" style={{ backgroundImage: `url(${bgImage})` }}>
+        <div className="ml-32 mb-16">
+          <h1 className="text-purple-600 text-5xl w-160 text-center">Welcome to <strong>ReadHive</strong></h1>
+          <p className="text-sm text-purple-500 w-160 text-center mt-5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae a quos eveniet labore officia consectetur veritatis, repellendus molestiae dolorem similique numquam omnis quas unde. Magnam dicta iste doloribus aspernatur fugiat!Lorem Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita qui eveniet quam eum, blanditiis nulla eaque explicabo hic repudiandae recusandae quidem perferendis culpa! Earum et omnis sint quasi ratione explicabo.</p>
         </div>
-    </div>
-    <div className="w-auto h-24 absolute top-92 left-32 right-32 transform -translate-y-1/2 bg-white rounded-md shadow-md shadow-slate-950 flex flex-col justify-center items-center">
-    <p className="text-black px-5">
-            Tribhuvan University (TU) is the oldest and largest university in Nepal, established in 1959 with the goal of providing quality education to students from diverse backgrounds. TU offers a wide range of undergraduate, graduate, and doctoral programs across various fields of study, including science, arts, management, and engineering.
-        </p> 
-        <a href="" className=" text-blue-500 underline px-5 mb-3">Learn More About Tribhuvan University</a>
-    </div>
-    </div>
+      </div>
+      <div className='h-14 bg-purple-300  list-none flex justify-center items-center space-x-48 text-2xl font-bold text-white'>
+        <li className="hover:bg-gradient-to-r hover:from-purple-950 hover:via-pink-950 hover:to-pink-400 hover:bg-clip-text hover:text-transparent transition-all ">All Books</li>
+        <li className="hover:bg-gradient-to-r hover:from-purple-950 hover:via-pink-950 hover:to-pink-400 hover:bg-clip-text hover:text-transparent transition-all"> Trending Books</li>
+        <li className="hover:bg-gradient-to-r hover:from-purple-950 hover:via-pink-950 hover:to-pink-400 hover:bg-clip-text hover:text-transparent transition-all"> Featured Books</li>
+        <li className="hover:bg-gradient-to-r hover:from-purple-950 hover:via-pink-950 hover:to-pink-400 hover:bg-clip-text hover:text-transparent transition-all"> Most Popular Books</li>
 
+      </div>
+
+     
     </>
-  )
-}
+  );
+};
 
-export default DahboardPage
+export default DashboardPage;
