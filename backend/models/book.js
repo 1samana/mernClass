@@ -38,8 +38,21 @@ const bookSchema = new mongoose.Schema({
   lannguage: {
     type: [String],
     default: "English",
+    trim: true, 
+  },
+  filename: { type: String, required: true },
+  imageBase64: {
+    type: String, // Base64-encoded string
     trim: true,
   },
+  contentType: {
+    type: String, // e.g., "image/png" or "image/jpeg"
+    trim: true,
+  },path: {
+    type: String,
+    required: true,
+  },
 });
+
 const bookModel = mongoose.model("Book", bookSchema);
 export default bookModel;

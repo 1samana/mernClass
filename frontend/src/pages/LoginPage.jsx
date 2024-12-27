@@ -5,8 +5,7 @@ import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-
-function LoginPage () {
+function LoginPage() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     name: "",
@@ -26,7 +25,7 @@ function LoginPage () {
       const data = await result.json();
       if (data.status === 200) {
         toast.success(data.msg);
-        navigate("/homee")
+        navigate("/homee");
       } else {
         toast.error(data.msg);
       }
@@ -68,18 +67,18 @@ function LoginPage () {
             <br></br>
           </div>
           <div className="relative w-full ">
-          <input
-            className="p-3 pl-10 rounded-lg w-full bg-purple-300/20"
-            type="password"
-            placeholder="Enter your password"
-            onChange={(e) =>
-              setLoginData((prevData) => ({
-                ...prevData,
-                password: e.target.value,
-              }))
-            }
-          />
-          <FaLock className=" absolute left-3 top-8 transform -translate-y-full text-purple-500/50" />
+            <input
+              className="p-3 pl-10 rounded-lg w-full bg-purple-300/20"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) =>
+                setLoginData((prevData) => ({
+                  ...prevData,
+                  password: e.target.value,
+                }))
+              }
+            />
+            <FaLock className=" absolute left-3 top-8 transform -translate-y-full text-purple-500/50" />
           </div>
           <br></br>
           <button
@@ -99,6 +98,6 @@ function LoginPage () {
       </div>
     </>
   );
-};
+}
 
 export default LoginPage;

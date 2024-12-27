@@ -1,14 +1,13 @@
-import React from 'react'
-import Navbar from '../component/Navbar'
-import HeroSection from '../component/HeroSection'
- function index() {
+import React from "react";
+import Navbar from "../component/Navbar";
+import HeroSection from "../component/HeroSection";
+function index() {
   return (
     <>
-    <div>
-      
-      <HeroSection/>
-    </div>
+      <div>
+        <HeroSection />
+      </div>
     </>
-  )
+  );
 }
 export default index;

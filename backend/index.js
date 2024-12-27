@@ -21,6 +21,9 @@
 import express from "express";
 import bcrypt from "bcryptjs"; // this is for ES6 i
 import multer from "multer";
+// import fs from "fs";
+
+
 const app = express();
 
 //importing database connection in index.js
@@ -30,14 +33,32 @@ import uM from "./models/product-model.js";
 import AdminModel from "./models/admin-model.js";
 import bookModel from "./models/book.js";
 import cors from "cors";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 //connection function call
 connectDB();
 //middleware
 app.use(express.json());
 //for form data and image
-//app.use(express.urlencoded({ extended: false }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+//multer middleware
+// Configure Multer Storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 //first api
 app.get("/home", (req, res) => {
   res.send("This is home page");
@@ -216,17 +237,10 @@ app.get("/admin/list/:name", async (req, res) => {
   }
 });
 
-app.post("/book", async (req, res) => {
+
+app.post("/book", upload.single("bookCover"), async (req, res) => {
   try {
-    const {
-      title,
-      description,
-      author,
-      publisher,
-      publicationDate,
-      genre,
-      lannguage,
-    } = req.body;
+    const { title, description, author, publisher, publicationDate, genre, lannguage } = req.body;
 
     const newBook = new bookModel({
       title,
@@ -234,22 +248,23 @@ app.post("/book", async (req, res) => {
       author,
       publisher,
       publicationDate,
-      genre,
+      genre, 
       lannguage,
+      filename: req.file.filename,
+      path: req.file.path,
     });
 
     await newBook.save();
-    return res
-      .status(200)
-      .json({ status: 200, msg: "Book added successfully", data: newBook });
+    res.status(200).json({ status:200,msg: "Book created successfully!" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: 500,  error: error.message });
+    res.status(500).json({ error: error.message });
   }
+
 });
 
 app.get("/booklist", async (req, res) => {
+  console.log(req.file); // Log file details
+  console.log(req.body); // Log form fields
   try {
     const books = await bookModel.find();
     if (books) {

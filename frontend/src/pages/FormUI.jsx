@@ -12,6 +12,7 @@ function FormUI() {
   //console.log(name, email, password);
   const navigate = useNavigate();
   //function to register the user
+  
   async function registerStudent(e) {
     e.preventDefault();
     try {
@@ -28,8 +29,8 @@ function FormUI() {
       });
       const data = await result.json();
       if (data.status === 200) {
-        toast.success(data.msg); 
-      navigate("/login");
+        toast.success(data.msg);
+        navigate("/login");
       } else {
         toast.error(data.msg);
       }
@@ -55,13 +56,13 @@ function FormUI() {
             time.
           </p>
           <div className="relative w-full">
-          <input
-             className="p-3 pl-10 rounded-lg w-full bg-purple-300/20 mt-4 "
-            type="text"
-            placeholder="Enter your name"
-            onChange={(e) => setName(e.target.value)}
-          />
-           <FaUser className=" absolute left-3 top-10 transform -translate-y-1/2 text-purple-500/50" />
+            <input
+              className="p-3 pl-10 rounded-lg w-full bg-purple-300/20 mt-4 "
+              type="text"
+              placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <FaUser className=" absolute left-3 top-10 transform -translate-y-1/2 text-purple-500/50" />
             <br></br>
           </div>
           <div className="relative w-full">
@@ -69,24 +70,23 @@ function FormUI() {
               className="p-3 pl-10 rounded-lg w-full bg-purple-300/20 mt-4 "
               type="text"
               placeholder="Enter your email"
-              onChange={(e) =>
-                setEmail(e.target.value)
-              }
+              onChange={(e) => setEmail(e.target.value)}
             />
             <FaUser className=" absolute left-3 top-10 transform -translate-y-1/2 text-purple-500/50" />
             <br></br>
           </div>
           <div className="relative w-full">
-          <input
-           className="p-3 pl-10 rounded-lg w-full bg-purple-300/20 mt-4 mb-4"
-            type="password"
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-          /><FaLock className=" absolute left-3 top-1/2 transform -translate-y-1/2 text-purple-500/50" />
-          <br></br>
-        </div>
-          
-        <button
+            <input
+              className="p-3 pl-10 rounded-lg w-full bg-purple-300/20 mt-4 mb-4"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FaLock className=" absolute left-3 top-1/2 transform -translate-y-1/2 text-purple-500/50" />
+            <br></br>
+          </div>
+
+          <button
             className="inline-block mb-3 px-10 py-2.5 bg-purple-700/80 rounded-lg text-white  hover:bg-slate-800 justify-center"
             type="submit"
             value="Login"

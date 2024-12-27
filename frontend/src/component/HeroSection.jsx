@@ -27,12 +27,19 @@ function HeroSection() {
           </p>
 
           <div className="flex space-x-4 items-center justify-center font-semibold p-3 list-none ">
-          <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg mt-4"onClick={()=>navigate("/login")}>
-            Login
-          </button>
-          <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg mt-4"onClick={()=>navigate("/register")}>
-            Register
-          </button></div>
+            <button
+              className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </button>
+            <button
+              className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg mt-4"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </button>
+          </div>
         </div>
       </div>
     </>
