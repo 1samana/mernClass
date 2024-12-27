@@ -35,7 +35,7 @@ connectDB();
 //middleware
 app.use(express.json());
 //for form data and image
-app.use(express.urlencoded({ extended: false }));
+//app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //first api
@@ -241,12 +241,11 @@ app.post("/book", async (req, res) => {
     await newBook.save();
     return res
       .status(200)
-      .json({ msg: "Book added successfully", data: newBook });
+      .json({ status: 200, msg: "Book added successfully", data: newBook });
   } catch (error) {
-    console.log(error);
     return res
       .status(500)
-      .json({ msg: "Internal server error", data: error.message });
+      .json({ status: 500,  error: error.message });
   }
 });
 
@@ -256,7 +255,7 @@ app.get("/booklist", async (req, res) => {
     if (books) {
       return res
         .status(200)
-        .json({ msg: "Books fetched successfully", data: books });
+        .json({ status: 200, msg: "Books fetched successfully", data: books });
     } else {
       return res.status(400).json({ msg: "No books found" });
     }

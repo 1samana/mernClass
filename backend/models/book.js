@@ -6,7 +6,6 @@ const bookSchema = new mongoose.Schema({
     minlength: [3, "Title must be at least 3 characters long"],
     maxlength: [100, "Title cannot exceed 100 characters"],
     required: [true, "Title is required"],
-
   },
   description: {
     type: String,
@@ -30,18 +29,16 @@ const bookSchema = new mongoose.Schema({
     required: [true, "Publisher is required"],
   },
   publicationDate: {
-    type: Date,
+    type: String,
   },
   genre: {
-    type: String,
+    type: [String],
     trim: true,
-    required: [true, "Genre is required"],
   },
   lannguage: {
-    type: String,
+    type: [String],
     default: "English",
     trim: true,
-    required: [true, "Language is required"],
   },
 });
 const bookModel = mongoose.model("Book", bookSchema);
