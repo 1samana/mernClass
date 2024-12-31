@@ -20,22 +20,16 @@
 // const express = require("express");
 import express from "express";
 import bcrypt from "bcryptjs"; // this is for ES6 i
-import multer from "multer";
-// import fs from "fs";
-
 
 const app = express();
-
-//importing database connection in index.js
-// import "./dbconfig/conn.js";
 import connectDB from "./dbconfig/conn.js";
 import uM from "./models/product-model.js";
 import AdminModel from "./models/admin-model.js";
 import bookModel from "./models/book.js";
 import cors from "cors";
 import path from 'path';
+import multer from "multer";
 import { fileURLToPath } from 'url';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //connection function call
@@ -46,9 +40,7 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
 //multer middleware
-// Configure Multer Storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -57,7 +49,6 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
-
 const upload = multer({ storage });
 //first api
 app.get("/home", (req, res) => {
@@ -172,7 +163,7 @@ app.post("/admin/login", async (req, res) => {
       return res.status(400).json({ msg: "Wrong password" });
     }
     if (adminLogin && isMatch) {
-      return res.status(200).json({ msg: "Logged in", data: adminLogin });
+      return res.status(200).json({ status:200, msg: "Logged in", data: adminLogin });
     }
   } catch {
     return res

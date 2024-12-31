@@ -42,13 +42,14 @@ const bookSchema = new mongoose.Schema({
   },
   filename: { type: String, required: true },
   imageBase64: {
-    type: String, // Base64-encoded string
+    type: String, 
     trim: true,
   },
   contentType: {
-    type: String, // e.g., "image/png" or "image/jpeg"
+    type: String,
     trim: true,
-  },path: {
+  },
+  path: {
     type: String,
     required: true,
   },
