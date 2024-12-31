@@ -202,7 +202,7 @@ app.get("/user/list", async (req, res) => {
 app.get("/admin/list", async (req, res) => {
   try {
     const admin = await AdminModel.find();
-    if (!admin) {
+    if (admin) {
       return res.status(200).json({ msg: "Admin list", data: admin });
     } else {
       return res.status(400).json({ msg: "No admin found" });
@@ -211,6 +211,21 @@ app.get("/admin/list", async (req, res) => {
     return res
       .status(500)
       .json({ msg: "Internal server error", err: error.message });
+  }
+});
+app.delete("/admin/delete/:_id", async (req, res) => {
+  try {
+    const users = await AdminModel.findByIdAndDelete(req.params._id);
+    if (users) {
+      return res.status(200).json({ msg: "Users deleted successfully" });
+    } else {
+      return res.status(400).json({ msg: "No Users found" });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(500)
+      .json({ msg: "Internal server error", error: error.message });
   }
 });
 

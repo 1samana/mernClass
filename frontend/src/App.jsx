@@ -9,6 +9,7 @@ import AllBooks from "./pages/AllBooks";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminAllBooks from "./admin/AdminAllBooks";
+import AdminAllUsers from "./admin/AdminAllUsers";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -27,6 +28,9 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/books" element={<AdminAllBooks />} />
+        
+        <Route path="/admin/users" element={<AdminAllUsers />} />
+      
       </Routes>
     </>
   );
